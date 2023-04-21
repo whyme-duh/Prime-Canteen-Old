@@ -1,0 +1,97 @@
+{% extends 'canteen/index.html' %}
+{% block content %}
+<div class="front-body ">
+	<div class="row">
+		<h5 class="font-one text-center pb-2">Today's Special</h5>
+		<div class="box col-md-12 " data-toggle="tooltip" data-placement=" top" title="{{food.name}}"
+			style="background-color:white;">
+			<div class="detail pt-3 d-flex justify-content-between" id="food-item" onclick="myFunction();">
+				<p class="card-text text-dark">Biriyani </p>
+				<p class="card-text-price text-dark ">Rs.200</p>
+		
+			</div>
+	</div>
+		
+	</div>
+	
+
+</div>
+<div class="menu-page pt-2">
+	<h5 class="font-one text-center">Today's Menu</h5>
+	{% for c in categories %}
+	<div class="container p-2">
+		<h5>{{c.name}}</h5>
+
+		
+		<hr>
+		<div class="food-list row container  justify-content-start">
+			{% for food in foods %}
+			{% if food.category == c %}
+				{% if food.still_left == True %}
+				<div class="modal" id ="modal" tabindex="-1" role="dialog">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">{{food.name}} title</h5>
+								
+							</div>
+							<div class="modal-body ">
+								<div class="col-md-12 d-flex justify-content-between">
+									<h5>Price</h5>
+									<p>Rs. 100 / per plate</p>
+								</div>
+								<div class="col-md-12 d-flex justify-content-between">
+									<h5>Quantity</h5>
+									<input type="number" value="0" class="w-50">
+								</div>
+								
+								
+									
+							</div>
+							<div class="modal-footer justify-content-evenly">
+								<button type="button" class="btn btn-primary">Add To Cart</button>
+								<button type="button" class="btn btn-danger" data-dismiss="modal" id ="closeBtn">Cancel</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="box col-md-3 m-4" data-toggle = "tooltip" data-placement =" top" title ="{{food.name}}" style="box-shadow: 0px 1px 15px green;">
+					<div class="detail pt-3 d-flex justify-content-between" id="food-item" onclick="myFunction();">
+						<p class="card-text ">{{food.name}}</p>
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-basket"
+							viewBox="0 0 16 16" onclick="">
+							<path
+								d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1v4.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 13.5V9a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h1.217L5.07 1.243a.5.5 0 0 1 .686-.172zM2 9v4.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V9H2zM1 7v1h14V7H1zm3 3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 4 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 6 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 8 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5z" />
+						</svg>
+						<p class="card-text-price ">Rs.{{food.price}}</p>
+						
+					</div>
+					
+				</div>
+				{% else %}
+				<div class="box col-md-3 m-4" data-toggle="tooltip" data-placement=" top" title="{{food.name}}"
+					style="box-shadow: 0px 1px 15px rgb(240, 4, 4);">
+					<div class="detail pt-3 d-flex justify-content-between" id="food-item" onclick="myFunction();">
+						<p class="card-text ">{{food.name}}</p>
+						<p class="card-text-price ">Rs.{{food.price}}</p>
+				
+					</div>
+				
+				</div>
+				{% endif %}
+				
+			
+			{% endif %}
+			{% endfor %}
+		</div>
+	</div>
+	{%endfor %}
+</div>
+<div class="container mt-5">
+	<h5 class="font-one text-center">Upcoming Events</h5>
+
+</div>
+{% endblock %}
+
+

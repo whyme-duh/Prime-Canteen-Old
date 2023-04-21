@@ -1,0 +1,37 @@
+{% extends "canteen/index.html"%}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container account-section">
+	<h1 class="text-center">My Profile</h1>
+	<div class="media d-flex justify-content-between">
+		<div class="media-body p pr-5 d-flex">
+			<img class="h-10 account-img rounded-circle" src="{{ user.profile.image.url }}">
+			<div class="content w-75">
+				<h2 class="account-heading">{{ user.username }}</h2>
+				
+				<p class="text-secondary">{{ user.email }}</p>
+			</div>
+		</div>
+		
+	</div>
+
+	<div class="content-section mt-5">
+		<form method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			<fieldset class="form-group ">
+				<legend class="border-bottom mb-4">UPDATE YOUR PROFILE</legend>
+				{{ profileUpdate_form|crispy }}
+			</fieldset>
+			<div class="form-group">
+				<button class="btn btn-outline-info" type="submit">
+					UPDATE
+				</button>
+			</div>
+
+		</form>
+
+	</div>
+</div>
+
+{% endblock content %}
